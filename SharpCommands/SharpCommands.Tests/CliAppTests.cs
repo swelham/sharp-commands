@@ -8,6 +8,7 @@ namespace SharpCommands.Tests
     public class CliAppTests
     {
         const string CLI_APP_NAME = "test_app";
+        const string CLI_APP_VERSION = "1.0.0.0";
 
         [TestMethod]
         public void Should_Have_Default_Values()
@@ -19,10 +20,10 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
-        public void Should_Output_Help_When_No_Command_Specified()
+        public void Should_Output_Cli_Help_When_No_Command_Specified()
         {
             var app = new CliApp(CLI_APP_NAME);
-            app.Version = "1.0.0.0";
+            app.Version = CLI_APP_VERSION;
 
             using (var console = new ConsoleOut())
             {
@@ -36,7 +37,7 @@ namespace SharpCommands.Tests
         public void Should_Output_Version_Number()
         {
             var options = new[] { "-v", "--version" };
-            var version = "1.0.0.0";
+            var version = CLI_APP_VERSION;
             var app = new CliApp(CLI_APP_NAME);
             app.Version = version;
 
@@ -47,6 +48,25 @@ namespace SharpCommands.Tests
                     app.Parse(new string[] { option });
 
                     Assert.AreEqual(version, console.GetOuput());
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Should_Output_Cli_Help_Screen_For_Option()
+        {
+            var options = new[] { "-h", "--help" };
+            var expected = Fixtures.NoCommandHelpScreen();
+            var app = new CliApp(CLI_APP_NAME);
+            app.Version = CLI_APP_VERSION;
+
+            foreach (var option in options)
+            {
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(new string[] { option });
+
+                    Assert.AreEqual(expected, console.GetOuput());
                 }
             }
         }

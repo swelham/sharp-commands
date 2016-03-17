@@ -30,6 +30,10 @@ namespace SharpCommands
             {
                 Console.Write(this.Version);
             }
+            else if (args[0] == "-h" || args[0] == "--help")
+            {
+                this.WriteHelpPage();
+            }
         }
 
         private void WriteHelpPage()
