@@ -20,7 +20,16 @@ namespace SharpCommands
 
         public void Parse(params string[] args)
         {
-            this.WriteHelpPage();
+            if (args == null || args.Count() == 0)
+            {
+                this.WriteHelpPage();
+                return;
+            }
+
+            if (args[0] == "-v" || args[0] == "--version")
+            {
+                Console.Write(this.Version);
+            }
         }
 
         private void WriteHelpPage()

@@ -31,5 +31,24 @@ namespace SharpCommands.Tests
                 Assert.AreEqual(Fixtures.NoCommandHelpScreen(), console.GetOuput());
             }
         }
+
+        [TestMethod]
+        public void Should_Output_Version_Number()
+        {
+            var options = new[] { "-v", "--version" };
+            var version = "1.0.0.0";
+            var app = new CliApp(CLI_APP_NAME);
+            app.Version = version;
+
+            foreach (var option in options)
+            {
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(new string[] { option });
+
+                    Assert.AreEqual(version, console.GetOuput());
+                }
+            }
+        }
     }
 }
