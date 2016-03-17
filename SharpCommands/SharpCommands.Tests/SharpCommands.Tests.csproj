@@ -54,12 +54,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CliAppTests.cs" />
+    <Compile Include="Support\ConsoleOut.cs" />
+    <Compile Include="Support\Fixtures.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpCommands\SharpCommands.csproj">
       <Project>{b469ba3c-7698-424d-b977-9d9f86066718}</Project>
       <Name>SharpCommands</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\No_Command_Help_Screen.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

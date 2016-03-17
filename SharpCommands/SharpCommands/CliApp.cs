@@ -17,5 +17,49 @@ namespace SharpCommands
         public string Name { get; private set; }
 
         public string Version { get; set; }
+
+        public void Parse(params string[] args)
+        {
+            this.WriteHelpPage();
+        }
+
+        private void WriteHelpPage()
+        {
+            var details = new Dictionary<string, string>();
+            details.Add("name", this.Name);
+            details.Add("usage", string.Format("{0} [global options] command [command options]", this.Name));
+            details.Add("version", this.Version);
+
+            this.WriteSection("Details:", details);
+            Console.WriteLine(string.Empty);
+
+            var globalOptions = new Dictionary<string, string>();
+            globalOptions.Add("--help, -h", string.Format("Shows {0} help", this.Name));
+            globalOptions.Add("--version, -v", string.Format("Shows current {0} version", this.Name));
+
+            this.WriteSection("Global Options:", globalOptions);
+        }
+
+        private void WriteSection(string header, Dictionary<string, string> items)
+        {
+            if (items.Count == 0)
+            {
+                return;
+            }
+
+            Console.WriteLine(header);
+
+            var valueStartIndex = items.Max(i => i.Key).Length + 4;
+
+            foreach (var item in items)
+            {
+                var builder = new StringBuilder("    ");
+                builder.Append(item.Key);
+                builder.Append(' ', valueStartIndex - item.Key.Length);
+                builder.Append(item.Value);
+
+                Console.WriteLine(builder.ToString());
+            }
+        }
     }
 }
