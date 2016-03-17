@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SharpCommands.Tests.Support;
+using SharpCommands.Text;
 
 namespace SharpCommands.Tests
 {
@@ -13,8 +15,8 @@ namespace SharpCommands.Tests
         {
             var app = new CliApp(CLI_APP_NAME);
 
-            Assert.AreEqual(app.Name, CLI_APP_NAME);
-            Assert.AreEqual(app.Version, "0.0.0.0");
+            Assert.AreEqual(CLI_APP_NAME, app.Name);
+            Assert.AreEqual("0.0.0.0", app.Version);
         }
     }
 }
