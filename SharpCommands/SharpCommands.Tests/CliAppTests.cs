@@ -37,9 +37,8 @@ namespace SharpCommands.Tests
         public void Should_Output_Version_Number()
         {
             var options = new[] { "-v", "--version" };
-            var version = CLI_APP_VERSION;
             var app = new CliApp(CLI_APP_NAME);
-            app.Version = version;
+            app.Version = CLI_APP_VERSION;
 
             foreach (var option in options)
             {
@@ -47,7 +46,7 @@ namespace SharpCommands.Tests
                 {
                     app.Parse(new string[] { option });
 
-                    Assert.AreEqual(version, console.GetOuput());
+                    Assert.AreEqual(CLI_APP_VERSION, console.GetOuput());
                 }
             }
         }
