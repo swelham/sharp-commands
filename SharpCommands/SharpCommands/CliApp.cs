@@ -39,9 +39,15 @@ namespace SharpCommands
 
             if (this.Commands != null)
             {
-                var cmd = this.Commands.Single(c => 
+                var cmd = this.Commands.SingleOrDefault(c => 
                     c.Name == args[0] || 
                     (c.Aliases != null && c.Aliases.Any(a => a == args[0])));
+
+                if (cmd == null)
+                {
+                    Console.Write(string.Format("The command '{0}' was not found", args[0]));
+                    return;
+                }
 
                 cmd.Run();
             }

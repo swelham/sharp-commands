@@ -114,5 +114,20 @@ namespace SharpCommands.Tests
                 Assert.AreEqual("alias-cmd#run", console.GetOuput());
             }
         }
+
+        [TestMethod]
+        public void Should_Print_Command_Not_Found()
+        {
+            var args = new[] { "does_not_exist" };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = Fixtures.TestCommands();
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+
+                Assert.AreEqual("The command 'does_not_exist' was not found", console.GetOuput());
+            }
+        }
     }
 }
