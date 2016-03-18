@@ -66,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\No-Command_Help_Screen_With_Commands.txt" />
-    <Content Include="Fixtures\No_Command_Help_Screen.txt" />
+    <Content Include="Fixtures\Cli_Help_Screen_With_Commands.txt" />
+    <Content Include="Fixtures\Cli_Help_Screen.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

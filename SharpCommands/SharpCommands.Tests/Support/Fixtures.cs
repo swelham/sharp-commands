@@ -21,12 +21,12 @@ namespace SharpCommands.Tests.Support
 
         public static string NoCommandHelpScreen()
         {
-            return ReadFixureFile("No_Command_Help_Screen.txt");
+            return ReadFixureFile("Cli_Help_Screen.txt");
         }
 
         public static string NoCommandHelpScreenWithCommands()
         {
-            return ReadFixureFile("No-Command_Help_Screen_With_Commands.txt");
+            return ReadFixureFile("Cli_Help_Screen_With_Commands.txt");
         }
 
         private static string ReadFixureFile(string name)
