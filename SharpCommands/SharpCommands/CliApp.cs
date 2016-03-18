@@ -39,7 +39,9 @@ namespace SharpCommands
 
             if (this.Commands != null)
             {
-                var cmd = this.Commands.Single(c => c.Name == args[0]);
+                var cmd = this.Commands.Single(c => 
+                    c.Name == args[0] || 
+                    (c.Aliases != null && c.Aliases.Any(a => a == args[0])));
 
                 cmd.Run();
             }

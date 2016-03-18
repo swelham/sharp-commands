@@ -99,5 +99,20 @@ namespace SharpCommands.Tests
                 Assert.AreEqual("simple-cmd#run", console.GetOuput());
             }
         }
+
+        [TestMethod]
+        public void Should_Run_Command_By_Alias()
+        {
+            var args = new[] { "ac" };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = Fixtures.TestCommands();
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+
+                Assert.AreEqual("alias-cmd#run", console.GetOuput());
+            }
+        }
     }
 }
