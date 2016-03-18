@@ -31,5 +31,10 @@ namespace SharpCommands.Tests.Support.Commands
                 return "alias-cmd";
             }
         }
+
+        public void Run()
+        {
+            Console.Write("alias-cmd#run");
+        }
     }
 }

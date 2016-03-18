@@ -13,5 +13,7 @@ namespace SharpCommands
         string Description { get; }
 
         string[] Aliases { get; }
+
+        void Run();
     }
 }

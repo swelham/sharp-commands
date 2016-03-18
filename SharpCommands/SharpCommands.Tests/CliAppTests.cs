@@ -84,5 +84,20 @@ namespace SharpCommands.Tests
                 }
             }
         }
+
+        [TestMethod]
+        public void Should_Run_Command()
+        {
+            var args = new[] { "simple-cmd" };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = Fixtures.TestCommands();
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+
+                Assert.AreEqual("simple-cmd#run", console.GetOuput());
+            }
+        }
     }
 }

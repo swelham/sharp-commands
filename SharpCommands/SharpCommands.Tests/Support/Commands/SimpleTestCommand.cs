@@ -31,5 +31,10 @@ namespace SharpCommands.Tests.Support.Commands
                 return "simple-cmd";
             }
         }
+
+        public void Run()
+        {
+            Console.Write("simple-cmd#run");
+        }
     }
 }

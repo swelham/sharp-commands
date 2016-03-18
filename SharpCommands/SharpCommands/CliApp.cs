@@ -27,7 +27,7 @@ namespace SharpCommands
                 this.WriteHelpPage();
                 return;
             }
-                       
+             
             if (args[0] == "-v" || args[0] == "--version")
             {
                 Console.Write(this.Version);
@@ -35,6 +35,13 @@ namespace SharpCommands
             else if (args[0] == "-h" || args[0] == "--help")
             {
                 this.WriteHelpPage();
+            }
+
+            if (this.Commands != null)
+            {
+                var cmd = this.Commands.Single(c => c.Name == args[0]);
+
+                cmd.Run();
             }
         }
 
