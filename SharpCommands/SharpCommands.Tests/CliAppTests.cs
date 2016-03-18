@@ -34,6 +34,24 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
+        public void Should_Output_Cli_Help_When_No_Command_Specified_With_Commands()
+        {
+            var app = new CliApp(CLI_APP_NAME);
+            app.Version = CLI_APP_VERSION;
+            app.Commands = new[]
+            {
+                new TestCommand()
+            };
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(new string[] { });
+
+                Assert.AreEqual(Fixtures.NoCommandHelpScreenWithCommands(), console.GetOuput());
+            }
+        }
+
+        [TestMethod]
         public void Should_Output_Version_Number()
         {
             var options = new[] { "-v", "--version" };

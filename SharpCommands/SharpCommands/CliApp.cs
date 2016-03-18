@@ -18,6 +18,8 @@ namespace SharpCommands
 
         public string Version { get; set; }
 
+        public ICommand[] Commands { get; set; }
+
         public void Parse(params string[] args)
         {
             if (args == null || args.Count() == 0)
@@ -25,7 +27,7 @@ namespace SharpCommands
                 this.WriteHelpPage();
                 return;
             }
-
+                       
             if (args[0] == "-v" || args[0] == "--version")
             {
                 Console.Write(this.Version);
@@ -45,6 +47,17 @@ namespace SharpCommands
 
             this.WriteSection("Details:", details);
             Console.WriteLine(string.Empty);
+
+            if (this.Commands != null)
+            {
+                var commands = new Dictionary<string, string>();
+                foreach (var command in this.Commands)
+                {
+                    commands.Add(command.Name, command.Description);
+                }
+                this.WriteSection("Commands:", commands);
+                Console.WriteLine(string.Empty);
+            }
 
             var globalOptions = new Dictionary<string, string>();
             globalOptions.Add("--help, -h", string.Format("Shows {0} help", this.Name));

@@ -1,0 +1,11 @@
+﻿Details:
+    name       test_app
+    usage      test_app [global options] command [command options]
+    version    1.0.0.0
+
+Commands:
+    test-cmd    The test command used for unit tests
+
+Global Options:
+    --help, -h       Shows test_app help
+    --version, -v    Shows current test_app version
