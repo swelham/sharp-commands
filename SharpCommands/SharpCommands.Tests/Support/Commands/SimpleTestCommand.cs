@@ -4,15 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCommands.Tests.Support
+namespace SharpCommands.Tests.Support.Commands
 {
-    internal class TestCommand : ICommand
+    internal class SimpleTestCommand : ICommand
     {
+        public string[] Aliases
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public string Description
         {
             get
             {
-                return "The test command used for unit tests";
+                return "A simple command used for unit tests";
             }
         }
 
@@ -20,7 +28,7 @@ namespace SharpCommands.Tests.Support
         {
             get
             {
-                return "test-cmd";
+                return "simple-cmd";
             }
         }
     }

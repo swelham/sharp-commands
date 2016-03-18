@@ -53,7 +53,14 @@ namespace SharpCommands
                 var commands = new Dictionary<string, string>();
                 foreach (var command in this.Commands)
                 {
-                    commands.Add(command.Name, command.Description);
+                    var name = command.Name;
+
+                    if (command.Aliases != null && command.Aliases.Length > 0)
+                    {
+                        name = string.Format("{0}, {1}", name, string.Join(", ", command.Aliases));
+                    }
+
+                    commands.Add(name, command.Description);
                 }
                 this.WriteSection("Commands:", commands);
                 Console.WriteLine(string.Empty);
@@ -75,7 +82,7 @@ namespace SharpCommands
 
             Console.WriteLine(header);
 
-            var valueStartIndex = items.Max(i => i.Key).Length + 4;
+            var valueStartIndex = items.Max(i => i.Key.Length) + 4;
 
             foreach (var item in items)
             {

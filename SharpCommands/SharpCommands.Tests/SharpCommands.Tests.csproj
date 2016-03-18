@@ -54,9 +54,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CliAppTests.cs" />
+    <Compile Include="Support\Commands\AliasTestCommand.cs" />
+    <Compile Include="Support\Commands\SimpleTestCommand.cs" />
     <Compile Include="Support\ConsoleOut.cs" />
     <Compile Include="Support\Fixtures.cs" />
-    <Compile Include="Support\TestCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpCommands\SharpCommands.csproj">

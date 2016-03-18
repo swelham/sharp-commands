@@ -4,7 +4,8 @@
     version    1.0.0.0
 
 Commands:
-    test-cmd    The test command used for unit tests
+    simple-cmd       A simple command used for unit tests
+    alias-cmd, ac    A aliased command used for unit tests
 
 Global Options:
     --help, -h       Shows test_app help

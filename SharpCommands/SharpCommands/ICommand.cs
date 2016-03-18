@@ -11,5 +11,7 @@ namespace SharpCommands
         string Name { get; }
 
         string Description { get; }
+
+        string[] Aliases { get; }
     }
 }

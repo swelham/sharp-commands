@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpCommands.Tests.Support.Commands;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,15 @@ namespace SharpCommands.Tests.Support
 {
     internal static class Fixtures
     {
+        public static ICommand[] TestCommands()
+        {
+            return new ICommand[]
+            {
+                new SimpleTestCommand(),
+                new AliasTestCommand()
+            };
+        }
+
         public static string NoCommandHelpScreen()
         {
             return ReadFixureFile("No_Command_Help_Screen.txt");

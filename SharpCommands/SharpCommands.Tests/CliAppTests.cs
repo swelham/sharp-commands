@@ -38,10 +38,7 @@ namespace SharpCommands.Tests
         {
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
-            app.Commands = new[]
-            {
-                new TestCommand()
-            };
+            app.Commands = Fixtures.TestCommands();
 
             using (var console = new ConsoleOut())
             {
