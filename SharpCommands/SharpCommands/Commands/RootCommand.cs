@@ -1,4 +1,5 @@
 ﻿using SharpCommands.Flags;
+using SharpCommands.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,7 @@ namespace SharpCommands.Commands
             }
         }
 
-        public List<ICommand> Commands
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<ICommand> Commands { get; set; }
 
         public string Description
         {
@@ -51,8 +41,8 @@ namespace SharpCommands.Commands
             {
                 return new IFlag[]
                 {
-                    new VersionFlag(),
-                    new HelpFlag()
+                    new VersionFlag(_cliApp),
+                    new HelpFlag(_cliApp)
                 };
             }
         }
@@ -69,68 +59,12 @@ namespace SharpCommands.Commands
         {
             if (!context.HasArgs() || context.HasFlag<HelpFlag>())
             {
-                this.WriteHelpPage();
+                var helpWriter = new HelpWriter();
+                helpWriter.WriteHelpPage(_cliApp);
             }
             else if (context.HasFlag<VersionFlag>())
             {
                 Console.Write(_cliApp.Version);
-            }
-        }
-
-        private void WriteHelpPage()
-        {
-            var details = new Dictionary<string, string>();
-            details.Add("name", _cliApp.Name);
-            details.Add("usage", string.Format("{0} [global flags] command [command flags]", _cliApp.Name));
-            details.Add("version", _cliApp.Version);
-
-            this.WriteSection("Details:", details);
-            Console.WriteLine(string.Empty);
-
-            if (_cliApp.Commands != null)
-            {
-                var commands = new Dictionary<string, string>();
-                foreach (var command in _cliApp.Commands)
-                {
-                    var name = command.Name;
-
-                    if (command.Aliases != null && command.Aliases.Length > 0)
-                    {
-                        name = string.Format("{0}, {1}", name, string.Join(", ", command.Aliases));
-                    }
-
-                    commands.Add(name, command.Description);
-                }
-                this.WriteSection("Commands:", commands);
-                Console.WriteLine(string.Empty);
-            }
-
-            var globalFlags = new Dictionary<string, string>();
-            globalFlags.Add("--help, -h", string.Format("Shows {0} help", _cliApp.Name));
-            globalFlags.Add("--version, -v", string.Format("Shows current {0} version", _cliApp.Name));
-
-            this.WriteSection("Global Flags:", globalFlags);
-        }
-
-        private void WriteSection(string header, Dictionary<string, string> items)
-        {
-            if (items.Count == 0)
-            {
-                return;
-            }
-
-            Console.WriteLine(header);
-
-            var valueStartIndex = items.Max(i => i.Key.Length) + 4;
-
-            foreach (var item in items)
-            {
-                var builder = new StringBuilder("    ");
-                builder.Append(item.Key);
-                builder.Append(' ', valueStartIndex - item.Key.Length);
-                builder.Append(item.Value);
-
-                Console.WriteLine(builder.ToString());
             }
         }
     }

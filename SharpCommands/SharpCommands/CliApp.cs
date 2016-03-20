@@ -1,4 +1,5 @@
 ﻿using SharpCommands.Commands;
+using SharpCommands.Flags;
 using SharpCommands.Text;
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,22 @@ namespace SharpCommands
                         return;
                     }
 
-                    if (args.Length - 1 > i && !args[i + 1].IsFlag())
+                    if (args.Length - 1 > i)
                     {
-                        commands = cmd.Commands;
-                        continue;
+                        var nextArg = args[i + 1];
+
+                        if (!nextArg.IsFlag())
+                        {
+                            commands = cmd.Commands;
+                            continue;
+                        }
+
+                        if (nextArg.IsFlagMatch(new HelpFlag(this)))
+                        {
+                            var helpWriter = new HelpWriter();
+                            helpWriter.WriteHelpPage(cmd);
+                            return;
+                        }
                     }
 
                     context.Run(cmd);

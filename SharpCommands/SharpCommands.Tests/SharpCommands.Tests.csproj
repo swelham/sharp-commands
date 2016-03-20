@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Fixtures\Commands\FlagsTestCommand.cs" />
     <Compile Include="Fixtures\Commands\NestedTestCommand.cs" />
+    <Compile Include="Fixtures\Flags\TestFlag.cs" />
     <Compile Include="Fixtures\Flags\ValidFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CliAppTests.cs" />
@@ -73,6 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\Output\Command_Help_Screen.txt" />
     <Content Include="Fixtures\Output\Cli_Help_Screen_With_Commands.txt" />
     <Content Include="Fixtures\Output\Cli_Help_Screen.txt" />
   </ItemGroup>

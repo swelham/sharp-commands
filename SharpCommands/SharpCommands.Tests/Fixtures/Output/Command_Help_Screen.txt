@@ -1,0 +1,7 @@
+﻿Details:
+    name     flags-cmd
+    usage    flags-cmd [flags]
+
+Flags:
+    -t, --test     This is test flag
+    -v, --valid    This is a valid flag

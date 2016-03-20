@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SharpCommands.Tests.Fixtures.Flags
 {
-    internal class ValidFlag : IFlag
+    internal class TestFlag : IFlag
     {
         public string Name
         {
             get
             {
-                return "valid";
+                return "test";
             }
         }
 
@@ -20,7 +20,7 @@ namespace SharpCommands.Tests.Fixtures.Flags
         {
             get
             {
-                return 'v';
+                return 't';
             }
         }
 
@@ -28,7 +28,7 @@ namespace SharpCommands.Tests.Fixtures.Flags
         {
             get
             {
-                return "This is a valid flag";
+                return "This is test flag";
             }
         }
     }

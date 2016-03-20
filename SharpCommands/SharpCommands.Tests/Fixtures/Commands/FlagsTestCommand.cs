@@ -15,22 +15,11 @@ namespace SharpCommands.Tests.Fixtures.Commands
         {
             get
             {
-                return null;
+                return new[] { "fc" };
             }
         }
 
-        public List<ICommand> Commands
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<ICommand> Commands { get; set; }
 
         public string Description
         {
@@ -46,6 +35,7 @@ namespace SharpCommands.Tests.Fixtures.Commands
             {
                 return new IFlag[]
                 {
+                    new TestFlag(),
                     new ValidFlag()
                 };
             }
@@ -64,6 +54,10 @@ namespace SharpCommands.Tests.Fixtures.Commands
             if (context.HasFlag<ValidFlag>())
             {
                 Console.Write(RUN_OUTPUT);
+            }
+            else
+            {
+                Console.Write("No_Flags");
             }
         }
     }

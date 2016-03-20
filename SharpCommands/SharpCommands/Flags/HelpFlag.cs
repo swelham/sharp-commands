@@ -8,6 +8,13 @@ namespace SharpCommands.Flags
 {
     internal class HelpFlag : IFlag
     {
+        private readonly CliApp _cliApp;
+
+        public HelpFlag(CliApp cliApp)
+        {
+            _cliApp = cliApp;
+        }
+
         public string Name
         {
             get
@@ -21,6 +28,14 @@ namespace SharpCommands.Flags
             get
             {
                 return 'h';
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return string.Format("Shows {0} help", _cliApp.Name);
             }
         }
     }

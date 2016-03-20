@@ -11,5 +11,7 @@ namespace SharpCommands
         string Name { get; }
 
         char Alias { get; }
+
+        string Description { get; }
     }
 }

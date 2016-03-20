@@ -20,6 +20,11 @@ namespace SharpCommands.Tests.Fixtures
             return ReadFixureFile("Cli_Help_Screen_With_Commands.txt");
         }
 
+        public static string CommandHelpScreen()
+        {
+            return ReadFixureFile("Command_Help_Screen.txt");
+        }
+
         private static string ReadFixureFile(string name)
         {
             using (var stream = File.OpenText(string.Concat("..\\..\\Fixtures\\Output\\", name)))

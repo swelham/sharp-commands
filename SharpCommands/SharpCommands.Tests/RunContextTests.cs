@@ -28,40 +28,6 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
-        public void HasFlag_Should_Return_True_For_Matched_Flag()
-        {
-            var argsList = new[] {
-                new[] { "-v" },
-                new[] { "--valid" }
-            };
-            var flag = new ValidFlag();
-
-            foreach (var args in argsList)
-            {
-                var context = new RunContext(args);
-
-                Assert.IsTrue(context.HasFlag(flag));
-            }
-        }
-
-        [TestMethod]
-        public void HasFlag_Should_Return_False_For_Unmatched_Flag()
-        {
-            var argsList = new[] {
-                new[] { "-h" },
-                new[] { "--help" }
-            };
-            var flag = new ValidFlag();
-
-            foreach (var args in argsList)
-            {
-                var context = new RunContext(args);
-
-                Assert.IsFalse(context.HasFlag(flag));
-            }
-        }
-
-        [TestMethod]
         public void HasFlag_T_Should_Return_True_For_Matched_Flag()
         {
             var argsList = new[] {

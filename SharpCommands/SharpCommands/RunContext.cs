@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpCommands.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,14 +29,6 @@ namespace SharpCommands
             return _args.Count() > 0;
         }
 
-        public bool HasFlag(IFlag flag)
-        {
-            var name = string.Concat("--", flag.Name);
-            var alias = string.Concat("-", flag.Alias);
-
-            return _args.Any(a => a == name || a == alias);
-        }
-
         public bool HasFlag<T>() where T : IFlag
         {
             if (_cmd == null)
@@ -45,7 +38,7 @@ namespace SharpCommands
 
             var flag = _cmd.Flags.OfType<T>().Single();
 
-            return this.HasFlag(flag);
+            return _args.Any(a => a.IsFlagMatch(flag));
         }
 
         public void Run(ICommand cmd)

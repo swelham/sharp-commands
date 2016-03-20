@@ -12,5 +12,13 @@ namespace SharpCommands.Text
         {
             return str.StartsWith("-");
         }
+
+        public static bool IsFlagMatch(this string str, IFlag flag)
+        {
+            var name = string.Concat("--", flag.Name);
+            var alias = string.Concat("-", flag.Alias);
+
+            return str == name || str == alias;
+        }
     }
 }

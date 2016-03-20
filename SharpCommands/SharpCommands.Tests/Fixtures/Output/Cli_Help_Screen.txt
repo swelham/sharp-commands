@@ -4,5 +4,5 @@
     version    1.0.0.0
 
 Global Flags:
-    --help, -h       Shows test_app help
-    --version, -v    Shows current test_app version
+    -h, --help       Shows test_app help
+    -v, --version    Shows current test_app version

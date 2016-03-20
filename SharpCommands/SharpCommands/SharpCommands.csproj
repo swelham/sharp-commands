@@ -48,6 +48,7 @@
     <Compile Include="IFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunContext.cs" />
+    <Compile Include="Text\HelpWriter.cs" />
     <Compile Include="Text\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

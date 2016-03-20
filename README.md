@@ -1,7 +1,6 @@
 # sharp-commands
 
 ## todo
-* automatic help for commands
 * flag not found validation
 * flags with basic value (string only)
 * flags with typeof(T) value. initial special type handling
