@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCommands.Tests.Support.Commands
+namespace SharpCommands.Tests.Fixtures.Commands
 {
     internal class AliasTestCommand : ICommand
     {

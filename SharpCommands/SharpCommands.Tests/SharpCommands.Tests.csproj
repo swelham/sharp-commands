@@ -54,10 +54,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CliAppTests.cs" />
-    <Compile Include="Support\Commands\AliasTestCommand.cs" />
-    <Compile Include="Support\Commands\SimpleTestCommand.cs" />
+    <Compile Include="Fixtures\Commands\AliasTestCommand.cs" />
+    <Compile Include="Fixtures\Commands\SimpleTestCommand.cs" />
     <Compile Include="Support\ConsoleOut.cs" />
-    <Compile Include="Support\Fixtures.cs" />
+    <Compile Include="Fixtures\TestFixtures.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpCommands\SharpCommands.csproj">
@@ -66,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Cli_Help_Screen_With_Commands.txt" />
-    <Content Include="Fixtures\Cli_Help_Screen.txt" />
+    <Content Include="Fixtures\Output\Cli_Help_Screen_With_Commands.txt" />
+    <Content Include="Fixtures\Output\Cli_Help_Screen.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

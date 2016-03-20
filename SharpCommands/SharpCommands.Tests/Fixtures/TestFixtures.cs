@@ -1,4 +1,4 @@
-﻿using SharpCommands.Tests.Support.Commands;
+﻿using SharpCommands.Tests.Fixtures.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCommands.Tests.Support
+namespace SharpCommands.Tests.Fixtures
 {
-    internal static class Fixtures
+    internal static class TestFixtures
     {
         public static ICommand[] TestCommands()
         {
@@ -31,7 +31,7 @@ namespace SharpCommands.Tests.Support
 
         private static string ReadFixureFile(string name)
         {
-            using (var stream = File.OpenText(string.Concat("..\\..\\Fixtures\\", name)))
+            using (var stream = File.OpenText(string.Concat("..\\..\\Fixtures\\Output\\", name)))
             {
                 return stream.ReadToEnd();
             }

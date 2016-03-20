@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpCommands.Tests.Support;
+using SharpCommands.Tests.Fixtures;
 
 namespace SharpCommands.Tests
 {
@@ -29,7 +30,7 @@ namespace SharpCommands.Tests
             {
                 app.Parse(new string[] { });
 
-                Assert.AreEqual(Fixtures.NoCommandHelpScreen(), console.GetOuput());
+                Assert.AreEqual(TestFixtures.NoCommandHelpScreen(), console.GetOuput());
             }
         }
 
@@ -38,13 +39,13 @@ namespace SharpCommands.Tests
         {
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
-            app.Commands = Fixtures.TestCommands();
+            app.Commands = TestFixtures.TestCommands();
 
             using (var console = new ConsoleOut())
             {
                 app.Parse(new string[] { });
 
-                Assert.AreEqual(Fixtures.NoCommandHelpScreenWithCommands(), console.GetOuput());
+                Assert.AreEqual(TestFixtures.NoCommandHelpScreenWithCommands(), console.GetOuput());
             }
         }
 
@@ -52,7 +53,7 @@ namespace SharpCommands.Tests
         public void Should_Output_Cli_Help_For_Option()
         {
             var options = new[] { "-h", "--help" };
-            var expected = Fixtures.NoCommandHelpScreen();
+            var expected = TestFixtures.NoCommandHelpScreen();
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
 
@@ -90,7 +91,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "simple-cmd" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = Fixtures.TestCommands();
+            app.Commands = TestFixtures.TestCommands();
 
             using (var console = new ConsoleOut())
             {
@@ -105,7 +106,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "ac" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = Fixtures.TestCommands();
+            app.Commands = TestFixtures.TestCommands();
 
             using (var console = new ConsoleOut())
             {
@@ -120,7 +121,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "does_not_exist" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = Fixtures.TestCommands();
+            app.Commands = TestFixtures.TestCommands();
 
             using (var console = new ConsoleOut())
             {
