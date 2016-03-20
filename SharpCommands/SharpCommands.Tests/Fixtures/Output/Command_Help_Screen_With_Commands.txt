@@ -1,0 +1,11 @@
+﻿Details:
+    name     flags-cmd
+    usage    flags-cmd [flags]
+
+Commands:
+    simple-cmd       A simple command used for unit tests
+    alias-cmd, ac    A aliased command used for unit tests
+
+Flags:
+    -t, --test     This is test flag
+    -v, --valid    This is a valid flag

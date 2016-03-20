@@ -245,5 +245,32 @@ namespace SharpCommands.Tests
                 }
             }
         }
+
+        [TestMethod]
+        public void Should_Output_Command_Help_With_Nested_Commands()
+        {
+            var args = new[] { "flags-cmd", "-h" };
+
+            var app = new CliApp(CLI_APP_NAME);
+            app.Version = CLI_APP_VERSION;
+            app.Commands = new List<ICommand>
+            {
+                new FlagsTestCommand
+                {
+                    Commands = new List<ICommand>
+                    {
+                        new SimpleTestCommand(),
+                        new AliasTestCommand()
+                    }
+                }
+            };
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+
+                Assert.AreEqual(TestFixtures.CommandHelpScreenWithCommands(), console.GetOuput());
+            }
+        }
     }
 }

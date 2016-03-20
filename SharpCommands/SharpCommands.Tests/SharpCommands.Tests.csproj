@@ -74,6 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\Output\Command_Help_Screen_With_Commands.txt" />
     <Content Include="Fixtures\Output\Command_Help_Screen.txt" />
     <Content Include="Fixtures\Output\Cli_Help_Screen_With_Commands.txt" />
     <Content Include="Fixtures\Output\Cli_Help_Screen.txt" />
