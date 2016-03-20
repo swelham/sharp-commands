@@ -18,6 +18,19 @@ namespace SharpCommands.Tests.Fixtures.Commands
             }
         }
 
+        public List<ICommand> Commands
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public string Description
         {
             get

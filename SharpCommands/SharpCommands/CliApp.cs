@@ -24,7 +24,7 @@ namespace SharpCommands
 
         public string Version { get; set; }
 
-        public ICommand[] Commands { get; set; }
+        public List<ICommand> Commands { get; set; }
 
         public void Parse(params string[] args)
         {
@@ -38,18 +38,39 @@ namespace SharpCommands
 
             if (this.Commands != null)
             {
-                var cmd = this.Commands.SingleOrDefault(c =>
-                    c.Name == args[0] ||
-                    (c.Aliases != null && c.Aliases.Any(a => a == args[0])));
+                var commands = this.Commands;
 
-                if (cmd == null)
+                for (int i = 0; i < args.Length; i++)
                 {
-                    Console.Write(string.Format("The command '{0}' was not found", args[0]));
-                    return;
-                }
+                    var cmd = this.MatchCommand(args[i], commands);
 
-                context.Run(cmd);
+                    if (cmd == null)
+                    {
+                        Console.Write(string.Format("The command '{0}' was not found", args[0]));
+                        return;
+                    }
+
+                    if (args.Length - 1 > i && !args[i + 1].IsFlag())
+                    {
+                        commands = cmd.Commands;
+                        continue;
+                    }
+
+                    context.Run(cmd);
+                }
             }
+        }
+
+        private ICommand MatchCommand(string cmdStr, IEnumerable<ICommand> commands)
+        {
+            if (commands == null || commands.Count() == 0)
+            {
+                return null;
+            }
+
+            return commands.SingleOrDefault(c =>
+                    c.Name == cmdStr ||
+                    (c.Aliases != null && c.Aliases.Any(a => a == cmdStr)));
         }
     }
 }

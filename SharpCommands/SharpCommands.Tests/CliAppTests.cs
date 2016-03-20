@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpCommands.Tests.Support;
 using SharpCommands.Tests.Fixtures;
 using SharpCommands.Tests.Fixtures.Commands;
+using System.Collections.Generic;
 
 namespace SharpCommands.Tests
 {
@@ -40,7 +41,7 @@ namespace SharpCommands.Tests
         {
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
-            app.Commands = new ICommand[]
+            app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand(),
                 new AliasTestCommand()
@@ -96,7 +97,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "simple-cmd" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = new[]
+            app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand()
             };
@@ -114,7 +115,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "ac" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = new[]
+            app.Commands = new List<ICommand>
             {
                 new AliasTestCommand()
             };
@@ -132,7 +133,7 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "does_not_exist" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = new[]
+            app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand()
             };
@@ -142,6 +143,31 @@ namespace SharpCommands.Tests
                 app.Parse(args);
 
                 Assert.AreEqual("The command 'does_not_exist' was not found", console.GetOuput());
+            }
+        }
+
+        [TestMethod]
+        public void Should_Run_Nested_Command()
+        {
+            var args = new[] { "nested-cmd", "simple-cmd" };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = new List<ICommand>
+            {
+                new NestedTestCommand
+                {
+                    Commands = new List<ICommand>
+                    {
+                        new SimpleTestCommand()
+                    }
+                }
+            };
+            
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+                var a = new[] { "" };
+                
+                Assert.AreEqual(SimpleTestCommand.RUN_OUTPUT, console.GetOuput());
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using SharpCommands.Tests.Fixtures.Flags;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,28 +6,17 @@ using System.Threading.Tasks;
 
 namespace SharpCommands.Tests.Fixtures.Commands
 {
-    internal class FlagsTestCommand : ICommand
+    internal class NestedTestCommand : ICommand
     {
         public string[] Aliases
         {
             get
             {
-                throw new NotImplementedException();
+                return new[] { "ntc" };
             }
         }
 
-        public List<ICommand> Commands
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public List<ICommand> Commands { get; set; }
 
         public string Description
         {
@@ -42,10 +30,7 @@ namespace SharpCommands.Tests.Fixtures.Commands
         {
             get
             {
-                return new IFlag[]
-                {
-                    new ValidFlag()
-                };
+                throw new NotImplementedException();
             }
         }
 
@@ -53,7 +38,7 @@ namespace SharpCommands.Tests.Fixtures.Commands
         {
             get
             {
-                throw new NotImplementedException();
+                return "nested-cmd";
             }
         }
 

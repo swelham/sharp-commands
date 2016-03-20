@@ -16,6 +16,8 @@ namespace SharpCommands
 
         IFlag[] Flags { get; }
 
+        List<ICommand> Commands { get; set; }
+
         void Run(RunContext context);
     }
 }
