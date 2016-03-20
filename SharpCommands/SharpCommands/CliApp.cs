@@ -57,6 +57,7 @@ namespace SharpCommands
                     }
 
                     context.Run(cmd);
+                    return;
                 }
             }
         }

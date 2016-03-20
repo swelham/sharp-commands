@@ -175,5 +175,29 @@ namespace SharpCommands.Tests
                 }
             }
         }
+
+        [TestMethod]
+        public void Should_Run_Command_With_Flag()
+        {
+            var argsList = new[] {
+                new[] { "flags-cmd", "-v" },
+                new[] { "flags-cmd", "--valid" }
+            };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = new List<ICommand>
+            {
+                new FlagsTestCommand()
+            };
+
+            foreach (var args in argsList)
+            {
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(args);
+
+                    Assert.AreEqual(FlagsTestCommand.RUN_OUTPUT, console.GetOuput());
+                }
+            }
+        }
     }
 }

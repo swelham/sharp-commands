@@ -9,11 +9,13 @@ namespace SharpCommands.Tests.Fixtures.Commands
 {
     internal class FlagsTestCommand : ICommand
     {
+        public const string RUN_OUTPUT = "flags-cmd#run";
+
         public string[] Aliases
         {
             get
             {
-                throw new NotImplementedException();
+                return null;
             }
         }
 
@@ -53,13 +55,16 @@ namespace SharpCommands.Tests.Fixtures.Commands
         {
             get
             {
-                throw new NotImplementedException();
+                return "flags-cmd";
             }
         }
 
         public void Run(RunContext context)
         {
-            throw new NotImplementedException();
+            if (context.HasFlag<ValidFlag>())
+            {
+                Console.Write(RUN_OUTPUT);
+            }
         }
     }
 }
