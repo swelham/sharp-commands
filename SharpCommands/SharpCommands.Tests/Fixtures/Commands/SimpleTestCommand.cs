@@ -8,6 +8,8 @@ namespace SharpCommands.Tests.Fixtures.Commands
 {
     internal class SimpleTestCommand : ICommand
     {
+        public const string RUN_OUTPUT = "simple-cmd#run";
+
         public string[] Aliases
         {
             get
@@ -42,7 +44,7 @@ namespace SharpCommands.Tests.Fixtures.Commands
 
         public void Run(RunContext context)
         {
-            Console.Write("simple-cmd#run");
+            Console.Write(RUN_OUTPUT);
         }
     }
 }

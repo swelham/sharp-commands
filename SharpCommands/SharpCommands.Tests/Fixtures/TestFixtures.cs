@@ -10,15 +10,6 @@ namespace SharpCommands.Tests.Fixtures
 {
     internal static class TestFixtures
     {
-        public static ICommand[] TestCommands()
-        {
-            return new ICommand[]
-            {
-                new SimpleTestCommand(),
-                new AliasTestCommand()
-            };
-        }
-
         public static string NoCommandHelpScreen()
         {
             return ReadFixureFile("Cli_Help_Screen.txt");

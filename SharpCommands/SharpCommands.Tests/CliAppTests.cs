@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpCommands.Tests.Support;
 using SharpCommands.Tests.Fixtures;
+using SharpCommands.Tests.Fixtures.Commands;
 
 namespace SharpCommands.Tests
 {
@@ -39,7 +40,11 @@ namespace SharpCommands.Tests
         {
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
-            app.Commands = TestFixtures.TestCommands();
+            app.Commands = new ICommand[]
+            {
+                new SimpleTestCommand(),
+                new AliasTestCommand()
+            };
 
             using (var console = new ConsoleOut())
             {
@@ -91,13 +96,16 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "simple-cmd" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = TestFixtures.TestCommands();
+            app.Commands = new[]
+            {
+                new SimpleTestCommand()
+            };
 
             using (var console = new ConsoleOut())
             {
                 app.Parse(args);
 
-                Assert.AreEqual("simple-cmd#run", console.GetOuput());
+                Assert.AreEqual(SimpleTestCommand.RUN_OUTPUT, console.GetOuput());
             }
         }
 
@@ -106,13 +114,16 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "ac" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = TestFixtures.TestCommands();
+            app.Commands = new[]
+            {
+                new AliasTestCommand()
+            };
 
             using (var console = new ConsoleOut())
             {
                 app.Parse(args);
 
-                Assert.AreEqual("alias-cmd#run", console.GetOuput());
+                Assert.AreEqual(AliasTestCommand.RUN_OUTPUT, console.GetOuput());
             }
         }
 
@@ -121,7 +132,10 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "does_not_exist" };
             var app = new CliApp(CLI_APP_NAME);
-            app.Commands = TestFixtures.TestCommands();
+            app.Commands = new[]
+            {
+                new SimpleTestCommand()
+            };
 
             using (var console = new ConsoleOut())
             {
