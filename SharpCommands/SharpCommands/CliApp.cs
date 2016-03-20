@@ -64,7 +64,7 @@ namespace SharpCommands
                         var helpFlag = new HelpFlag(this);
                         if (nextArg.IsFlagMatch(helpFlag))
                         {
-                            if (!cmd.Flags.Any(f => f.Name == helpFlag.Name || f.Alias == helpFlag.Alias))
+                            if (cmd.Flags == null || !cmd.Flags.Any(f => f.Name == helpFlag.Name || f.Alias == helpFlag.Alias))
                             {
                                 var helpWriter = new HelpWriter();
                                 helpWriter.WriteHelpPage(cmd);

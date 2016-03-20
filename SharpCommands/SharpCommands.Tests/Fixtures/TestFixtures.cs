@@ -29,6 +29,11 @@ namespace SharpCommands.Tests.Fixtures
         {
             return ReadFixureFile("Command_Help_Screen_With_Commands.txt");
         }
+
+        public static string CommandHelpScreenOnlyDefaultFlags()
+        {
+            return ReadFixureFile("Command_Help_Screen_Only_Default_Flags.txt");
+        }
         
         private static string ReadFixureFile(string name)
         {

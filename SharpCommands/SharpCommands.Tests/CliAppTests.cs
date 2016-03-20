@@ -247,6 +247,25 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
+        public void Should_Output_Command_Help_For_Command_With_Null_Flags_Property()
+        {
+            var args = new[] { "simple-cmd", "-h" };
+            var app = new CliApp(CLI_APP_NAME);
+            app.Version = CLI_APP_VERSION;
+            app.Commands = new List<ICommand>
+            {
+                new SimpleTestCommand()
+            };
+
+            using (var console = new ConsoleOut())
+            {
+                app.Parse(args);
+
+                Assert.AreEqual(TestFixtures.CommandHelpScreenOnlyDefaultFlags(), console.GetOuput());
+            }
+        }
+
+        [TestMethod]
         public void Should_Output_Command_Help_With_Nested_Commands()
         {
             var args = new[] { "flags-cmd", "-h" };
