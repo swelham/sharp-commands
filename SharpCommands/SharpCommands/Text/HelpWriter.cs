@@ -30,7 +30,15 @@ namespace SharpCommands.Text
         {
             var lines = new Dictionary<string, string>();
             lines.Add("name", cmd.Name);
-            lines.Add("usage", string.Format("{0} [flags]", cmd.Name));
+
+            var optionalCmd = string.Empty;
+
+            if (cmd.Commands != null && cmd.Commands.Count() > 0)
+            {
+                optionalCmd = "command ";
+            }
+
+            lines.Add("usage", string.Format("{0} [{1}flags]", cmd.Name, optionalCmd));
 
             this.PrintDetails(lines);
             this.PrintCommands(cmd.Commands);

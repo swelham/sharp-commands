@@ -1,6 +1,6 @@
 ﻿Details:
     name     flags-cmd
-    usage    flags-cmd [flags]
+    usage    flags-cmd [command flags]
 
 Commands:
     simple-cmd       A simple command used for unit tests
