@@ -149,7 +149,10 @@ namespace SharpCommands.Tests
         [TestMethod]
         public void Should_Run_Nested_Command()
         {
-            var args = new[] { "nested-cmd", "simple-cmd" };
+            var argsList = new[] {
+                new[] { "nested-cmd", "alias-cmd" },
+                new[] { "ntc", "ac" }
+            };
             var app = new CliApp(CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
@@ -157,17 +160,19 @@ namespace SharpCommands.Tests
                 {
                     Commands = new List<ICommand>
                     {
-                        new SimpleTestCommand()
+                        new AliasTestCommand()
                     }
                 }
             };
-            
-            using (var console = new ConsoleOut())
+
+            foreach (var args in argsList)
             {
-                app.Parse(args);
-                var a = new[] { "" };
-                
-                Assert.AreEqual(SimpleTestCommand.RUN_OUTPUT, console.GetOuput());
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(args);
+
+                    Assert.AreEqual(AliasTestCommand.RUN_OUTPUT, console.GetOuput());
+                }
             }
         }
     }
