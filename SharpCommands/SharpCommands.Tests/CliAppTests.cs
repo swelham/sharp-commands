@@ -272,5 +272,30 @@ namespace SharpCommands.Tests
                 Assert.AreEqual(TestFixtures.CommandHelpScreenWithCommands(), console.GetOuput());
             }
         }
+
+        [TestMethod]
+        public void Should_Run_Command_With_Overridden_Help_Flag()
+        {
+            var argsList = new[] {
+                new[] { "override-help-cmd", "-h" },
+                new[] { "override-help-cmd", "--help" }
+            };
+
+            var app = new CliApp(CLI_APP_NAME);
+            app.Commands = new List<ICommand>
+            {
+                new OverrideHelpTestCommand()
+            };
+
+            foreach (var args in argsList)
+            {
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(args);
+
+                    Assert.AreEqual(OverrideHelpTestCommand.RUN_OUTPUT, console.GetOuput());
+                }
+            }
+        }
     }
 }

@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Fixtures\Commands\FlagsTestCommand.cs" />
     <Compile Include="Fixtures\Commands\NestedTestCommand.cs" />
+    <Compile Include="Fixtures\Commands\OverrideHelpTestCommand.cs" />
+    <Compile Include="Fixtures\Flags\OverrideHelpFlag.cs" />
     <Compile Include="Fixtures\Flags\TestFlag.cs" />
     <Compile Include="Fixtures\Flags\ValidFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

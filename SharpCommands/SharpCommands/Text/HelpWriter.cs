@@ -76,16 +76,25 @@ namespace SharpCommands.Text
 
         private void PrintFlags(IFlag[] flags, string header = "Flags:")
         {
-            if (flags == null || flags.Count() == 0)
-            {
-                return;
-            }
-
+            var helpAliasTaken = false;
             var lines = new Dictionary<string, string>();
 
-            foreach (var flag in flags)
+            if (flags != null)
+            { 
+                foreach (var flag in flags)
+                {
+                    if (flag.Alias == 'h' || flag.Name == "help")
+                    {
+                        helpAliasTaken = true;
+                    }
+
+                    lines.Add(string.Format("-{0}, --{1}", flag.Alias, flag.Name), flag.Description);
+                }
+            }
+
+            if (!helpAliasTaken)
             {
-                lines.Add(string.Format("-{0}, --{1}", flag.Alias, flag.Name), flag.Description);
+                lines.Add("-h, --help", "Show help for this command");
             }
 
             Console.WriteLine(string.Empty);

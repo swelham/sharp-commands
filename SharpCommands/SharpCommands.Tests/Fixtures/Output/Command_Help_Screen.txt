@@ -5,3 +5,4 @@
 Flags:
     -t, --test     This is test flag
     -v, --valid    This is a valid flag
+    -h, --help     Show help for this command

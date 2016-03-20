@@ -61,11 +61,15 @@ namespace SharpCommands
                             continue;
                         }
 
-                        if (nextArg.IsFlagMatch(new HelpFlag(this)))
+                        var helpFlag = new HelpFlag(this);
+                        if (nextArg.IsFlagMatch(helpFlag))
                         {
-                            var helpWriter = new HelpWriter();
-                            helpWriter.WriteHelpPage(cmd);
-                            return;
+                            if (!cmd.Flags.Any(f => f.Name == helpFlag.Name || f.Alias == helpFlag.Alias))
+                            {
+                                var helpWriter = new HelpWriter();
+                                helpWriter.WriteHelpPage(cmd);
+                                return;
+                            }
                         }
                     }
 
