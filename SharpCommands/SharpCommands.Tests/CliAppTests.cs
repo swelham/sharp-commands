@@ -131,6 +131,7 @@ namespace SharpCommands.Tests
         [TestMethod]
         public void Should_Print_Command_Not_Found()
         {
+            var expect = string.Concat("The command 'does_not_exist' was not found", Environment.NewLine);
             var args = new[] { "does_not_exist" };
             var app = new CliApp(CLI_APP_NAME);
             app.Commands = new List<ICommand>
@@ -141,8 +142,8 @@ namespace SharpCommands.Tests
             using (var console = new ConsoleOut())
             {
                 app.Parse(args);
-
-                Assert.AreEqual("The command 'does_not_exist' was not found", console.GetOuput());
+                
+                Assert.AreEqual(expect, console.GetOuput());
             }
         }
 
