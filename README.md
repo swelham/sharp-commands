@@ -2,7 +2,6 @@
 
 ## todo
 * flag not found validation
-* flags with basic value (string only)
 * flags with typeof(T) value. initial special type handling
   * bool - accept 1, 0, true, false, t, f
   * arrays - accept comma separated value and split into array
