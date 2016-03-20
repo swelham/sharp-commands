@@ -36,15 +36,42 @@ namespace SharpCommands
                 throw new NullReferenceException("No instance of ICommand found in RunContext");
             }
 
-            var flag = _cmd.Flags.OfType<T>().Single();
+            var flag = this.GetCommandFlag<T>();
 
             return _args.Any(a => a.IsFlagMatch(flag));
         }
+
+        public string FlagValue<T>() where T : IFlag
+        {
+            var flag = this.GetCommandFlag<T>();
+            string flagValue = string.Empty;
+
+            for (int i = 0; i < _args.Length; i++)
+            {
+                if (_args[i].IsFlagMatch(flag) && _args.Length - 1 > i)
+                {
+                    flagValue = _args[i + 1];
+                    break;
+                }
+            }
+
+            if (flagValue.IsFlag())
+            {
+                return string.Empty;
+            }
+
+            return flagValue;
+        } 
 
         public void Run(ICommand cmd)
         {
             _cmd = cmd;
             cmd.Run(this);
+        }
+
+        private T GetCommandFlag<T>() where T : IFlag
+        {
+            return _cmd.Flags.OfType<T>().Single();
         }
     }
 }

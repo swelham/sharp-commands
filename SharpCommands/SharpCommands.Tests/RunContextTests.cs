@@ -89,13 +89,35 @@ namespace SharpCommands.Tests
             }
         }
 
-        //[TestMethod]
-        //public void Run_Should_Throw_NullReferenceException_With_No_Command()
-        //{
-        //    var args = new string[] { };
-        //    var context = new RunContext(args);
+        [TestMethod]
+        public void FlagValue_Should_Return_The_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "flag_value" };
+            var context = new RunContext(args, cmd);
 
-        //    context
-        //}
+            var flagValue = context.FlagValue<TestFlag>();
+
+            Assert.AreEqual("flag_value", flagValue);
+        }
+
+        [TestMethod]
+        public void FlagValue_Should_Not_Return_A_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var argsList = new[] {
+                new[] { "flags-cmd", "-t" },
+                new[] { "flags-cmd", "-t", "-v"}
+            };
+
+            foreach (var args in argsList)
+            {
+                var context = new RunContext(args, cmd);
+
+                var flagValue = context.FlagValue<TestFlag>();
+
+                Assert.AreEqual(string.Empty, flagValue);
+            }
+        }
     }
 }
