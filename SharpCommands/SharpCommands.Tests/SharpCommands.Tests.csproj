@@ -61,6 +61,8 @@
     <Compile Include="Fixtures\Commands\SimpleTestCommand.cs" />
     <Compile Include="RunContextTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
+    <Compile Include="Support\ArgsExpectation.cs" />
+    <Compile Include="Support\CommandNotFoundExpectation.cs" />
     <Compile Include="Support\ConsoleOut.cs" />
     <Compile Include="Fixtures\TestFixtures.cs" />
   </ItemGroup>

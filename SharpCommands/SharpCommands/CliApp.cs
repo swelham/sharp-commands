@@ -46,7 +46,7 @@ namespace SharpCommands
 
                     if (cmd == null)
                     {
-                        Console.Write(string.Format("The command '{0}' was not found{1}", args[0], Environment.NewLine));
+                        Console.Write(string.Format("The command '{0}' was not found{1}", args[i], Environment.NewLine));
                         return;
                     }
 

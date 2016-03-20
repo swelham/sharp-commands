@@ -131,19 +131,36 @@ namespace SharpCommands.Tests
         [TestMethod]
         public void Should_Print_Command_Not_Found()
         {
-            var expect = string.Concat("The command 'does_not_exist' was not found", Environment.NewLine);
-            var args = new[] { "does_not_exist" };
+            var expectations = new[] {
+                new ArgsExpectation<CommandNotFoundExpectation>(
+                    new[] { "does_not_exist" },
+                    new CommandNotFoundExpectation("does_not_exist")),
+
+                new ArgsExpectation<CommandNotFoundExpectation>(
+                    new[] { "nested-cmd", "nested_does_not_exist" },
+                    new CommandNotFoundExpectation("nested_does_not_exist"))
+            };
+
             var app = new CliApp(CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
-                new SimpleTestCommand()
+                new NestedTestCommand
+                {
+                    Commands = new List<ICommand>
+                    {
+                        new SimpleTestCommand()
+                    }
+                }
             };
 
-            using (var console = new ConsoleOut())
+            foreach (var expectation in expectations)
             {
-                app.Parse(args);
-                
-                Assert.AreEqual(expect, console.GetOuput());
+                using (var console = new ConsoleOut())
+                {
+                    app.Parse(expectation.Args);
+
+                    Assert.AreEqual(expectation.Output.ToString(), console.GetOuput());
+                }
             }
         }
 
