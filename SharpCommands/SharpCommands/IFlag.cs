@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace SharpCommands
 {
-    public interface ICommand
+    public interface IFlag
     {
         string Name { get; }
 
-        string Description { get; }
-
-        string[] Aliases { get; }
-
-        IFlag[] Flags { get; }
-
-        void Run(RunContext context);
+        char Alias { get; }
     }
 }

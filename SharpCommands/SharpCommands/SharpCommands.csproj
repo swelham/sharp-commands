@@ -41,8 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CliApp.cs" />
+    <Compile Include="Commands\RootCommand.cs" />
+    <Compile Include="Flags\HelpFlag.cs" />
+    <Compile Include="Flags\VersionFlag.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="IFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunContext.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,10 +52,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fixtures\Commands\FlagsTestCommand.cs" />
+    <Compile Include="Fixtures\Flags\ValidFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CliAppTests.cs" />
     <Compile Include="Fixtures\Commands\AliasTestCommand.cs" />
     <Compile Include="Fixtures\Commands\SimpleTestCommand.cs" />
+    <Compile Include="RunContextTests.cs" />
+    <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Support\ConsoleOut.cs" />
     <Compile Include="Fixtures\TestFixtures.cs" />
   </ItemGroup>

@@ -24,6 +24,14 @@ namespace SharpCommands.Tests.Fixtures.Commands
             }
         }
 
+        public IFlag[] Flags
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public string Name
         {
             get
@@ -32,7 +40,7 @@ namespace SharpCommands.Tests.Fixtures.Commands
             }
         }
 
-        public void Run()
+        public void Run(RunContext context)
         {
             Console.Write("alias-cmd#run");
         }
