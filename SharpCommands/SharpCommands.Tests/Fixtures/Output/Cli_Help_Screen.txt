@@ -1,8 +1,8 @@
 ﻿Details:
     name       test_app
-    usage      test_app [global options] command [command options]
+    usage      test_app [global flags] command [command flags]
     version    1.0.0.0
 
-Global Options:
+Global Flags:
     --help, -h       Shows test_app help
     --version, -v    Shows current test_app version

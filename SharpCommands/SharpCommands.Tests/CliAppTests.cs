@@ -56,18 +56,18 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
-        public void Should_Output_Cli_Help_For_Option()
+        public void Should_Output_Cli_Help_For_Flags()
         {
-            var options = new[] { "-h", "--help" };
+            var flags = new[] { "-h", "--help" };
             var expected = TestFixtures.NoCommandHelpScreen();
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
 
-            foreach (var option in options)
+            foreach (var flag in flags)
             {
                 using (var console = new ConsoleOut())
                 {
-                    app.Parse(new string[] { option });
+                    app.Parse(new string[] { flag });
 
                     Assert.AreEqual(expected, console.GetOuput());
                 }
@@ -77,15 +77,15 @@ namespace SharpCommands.Tests
         [TestMethod]
         public void Should_Output_Version_Number()
         {
-            var options = new[] { "-v", "--version" };
+            var flags = new[] { "-v", "--version" };
             var app = new CliApp(CLI_APP_NAME);
             app.Version = CLI_APP_VERSION;
 
-            foreach (var option in options)
+            foreach (var flag in flags)
             {
                 using (var console = new ConsoleOut())
                 {
-                    app.Parse(new string[] { option });
+                    app.Parse(new string[] { flag });
 
                     Assert.AreEqual(CLI_APP_VERSION, console.GetOuput());
                 }

@@ -81,7 +81,7 @@ namespace SharpCommands.Commands
         {
             var details = new Dictionary<string, string>();
             details.Add("name", _cliApp.Name);
-            details.Add("usage", string.Format("{0} [global options] command [command options]", _cliApp.Name));
+            details.Add("usage", string.Format("{0} [global flags] command [command flags]", _cliApp.Name));
             details.Add("version", _cliApp.Version);
 
             this.WriteSection("Details:", details);
@@ -105,11 +105,11 @@ namespace SharpCommands.Commands
                 Console.WriteLine(string.Empty);
             }
 
-            var globalOptions = new Dictionary<string, string>();
-            globalOptions.Add("--help, -h", string.Format("Shows {0} help", _cliApp.Name));
-            globalOptions.Add("--version, -v", string.Format("Shows current {0} version", _cliApp.Name));
+            var globalFlags = new Dictionary<string, string>();
+            globalFlags.Add("--help, -h", string.Format("Shows {0} help", _cliApp.Name));
+            globalFlags.Add("--version, -v", string.Format("Shows current {0} version", _cliApp.Name));
 
-            this.WriteSection("Global Options:", globalOptions);
+            this.WriteSection("Global Flags:", globalFlags);
         }
 
         private void WriteSection(string header, Dictionary<string, string> items)
