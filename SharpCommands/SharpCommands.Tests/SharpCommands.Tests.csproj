@@ -69,6 +69,8 @@
     <Compile Include="Support\CommandNotFoundExpectation.cs" />
     <Compile Include="Support\ConsoleOut.cs" />
     <Compile Include="Fixtures\TestFixtures.cs" />
+    <Compile Include="CliAppBuilderTests.cs" />
+    <Compile Include="Support\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpCommands\SharpCommands.csproj">

@@ -79,6 +79,11 @@ namespace SharpCommands
             }
         }
 
+        public static CliAppBuilder Build(string name)
+        {
+            return new CliAppBuilder(new CliApp(name));
+        }
+
         private ICommand MatchCommand(string cmdStr, IEnumerable<ICommand> commands)
         {
             if (commands == null || commands.Count() == 0)

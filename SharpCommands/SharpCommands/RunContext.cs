@@ -18,7 +18,7 @@ namespace SharpCommands
             _args = args;
         }
 
-        public RunContext(string[] args, ICommand command)
+        internal RunContext(string[] args, ICommand command)
         {
             _args = args;
             _cmd = command;

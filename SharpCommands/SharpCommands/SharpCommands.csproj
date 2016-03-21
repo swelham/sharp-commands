@@ -41,10 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CliApp.cs" />
+    <Compile Include="CliAppBuilder.cs" />
+    <Compile Include="CliCommandBuilder.cs" />
     <Compile Include="Commands\RootCommand.cs" />
     <Compile Include="Flags\HelpFlag.cs" />
     <Compile Include="Flags\VersionFlag.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandBuilder.cs" />
     <Compile Include="IFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunContext.cs" />

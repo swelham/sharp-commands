@@ -10,23 +10,20 @@ namespace SharpCommands.Tests
     [TestClass]
     public class CliAppTests
     {
-        const string CLI_APP_NAME = "test_app";
-        const string CLI_APP_VERSION = "1.0.0.0";
-
         [TestMethod]
         public void Should_Have_Default_Values()
         {
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
 
-            Assert.AreEqual(CLI_APP_NAME, app.Name);
-            Assert.AreEqual("0.0.0.0", app.Version);
+            Assert.AreEqual(Constants.CLI_APP_NAME, app.Name);
+            Assert.AreEqual(Constants.CLI_APP_DEFAULT_VERSION, app.Version);
         }
 
         [TestMethod]
         public void Should_Output_Cli_Help_When_No_Command_Specified()
         {
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
 
             using (var console = new ConsoleOut())
             {
@@ -39,8 +36,8 @@ namespace SharpCommands.Tests
         [TestMethod]
         public void Should_Output_Cli_Help_With_Commands_When_No_Command_Specified()
         {
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
             app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand(),
@@ -60,8 +57,8 @@ namespace SharpCommands.Tests
         {
             var flags = new[] { "-h", "--help" };
             var expected = TestFixtures.NoCommandHelpScreen();
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
 
             foreach (var flag in flags)
             {
@@ -78,8 +75,8 @@ namespace SharpCommands.Tests
         public void Should_Output_Version_Number()
         {
             var flags = new[] { "-v", "--version" };
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
 
             foreach (var flag in flags)
             {
@@ -87,7 +84,7 @@ namespace SharpCommands.Tests
                 {
                     app.Parse(new string[] { flag });
 
-                    Assert.AreEqual(CLI_APP_VERSION, console.GetOuput());
+                    Assert.AreEqual(Constants.CLI_APP_VERSION, console.GetOuput());
                 }
             }
         }
@@ -96,7 +93,7 @@ namespace SharpCommands.Tests
         public void Should_Run_Command()
         {
             var args = new[] { "simple-cmd" };
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand()
@@ -114,7 +111,7 @@ namespace SharpCommands.Tests
         public void Should_Run_Command_By_Alias()
         {
             var args = new[] { "ac" };
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new AliasTestCommand()
@@ -141,7 +138,7 @@ namespace SharpCommands.Tests
                     new CommandNotFoundExpectation("nested_does_not_exist"))
             };
 
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new NestedTestCommand
@@ -171,7 +168,7 @@ namespace SharpCommands.Tests
                 new[] { "nested-cmd", "alias-cmd" },
                 new[] { "ntc", "ac" }
             };
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new NestedTestCommand
@@ -201,7 +198,7 @@ namespace SharpCommands.Tests
                 new[] { "flags-cmd", "-v" },
                 new[] { "flags-cmd", "--valid" }
             };
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new FlagsTestCommand()
@@ -228,8 +225,8 @@ namespace SharpCommands.Tests
                 new[] { "fc", "-h" }
             };
 
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
             app.Commands = new List<ICommand>
             {
                 new FlagsTestCommand()
@@ -250,8 +247,8 @@ namespace SharpCommands.Tests
         public void Should_Output_Command_Help_For_Command_With_Null_Flags_Property()
         {
             var args = new[] { "simple-cmd", "-h" };
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
             app.Commands = new List<ICommand>
             {
                 new SimpleTestCommand()
@@ -270,8 +267,8 @@ namespace SharpCommands.Tests
         {
             var args = new[] { "flags-cmd", "-h" };
 
-            var app = new CliApp(CLI_APP_NAME);
-            app.Version = CLI_APP_VERSION;
+            var app = new CliApp(Constants.CLI_APP_NAME);
+            app.Version = Constants.CLI_APP_VERSION;
             app.Commands = new List<ICommand>
             {
                 new FlagsTestCommand
@@ -300,7 +297,7 @@ namespace SharpCommands.Tests
                 new[] { "override-help-cmd", "--help" }
             };
 
-            var app = new CliApp(CLI_APP_NAME);
+            var app = new CliApp(Constants.CLI_APP_NAME);
             app.Commands = new List<ICommand>
             {
                 new OverrideHelpTestCommand()
