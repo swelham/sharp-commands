@@ -91,6 +91,21 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
+        public void Run_Should_Print_Flag_Not_Found_For_Invalid_Flag()
+        {
+            var expect = string.Concat("Error: unknown flag '-i'", Environment.NewLine);
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-i" };
+            var context = new RunContext(args);
+
+            using (var console = new ConsoleOut())
+            {
+                context.Run(cmd);
+                Assert.AreEqual(expect, console.GetOuput());
+            }
+        }
+
+        [TestMethod]
         public void FlagValue_Should_Return_The_Flag_Value()
         {
             var cmd = new FlagsTestCommand();

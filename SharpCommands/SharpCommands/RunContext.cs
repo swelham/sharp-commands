@@ -72,12 +72,37 @@ namespace SharpCommands
         public void Run(ICommand cmd)
         {
             _cmd = cmd;
+
+            if (!this.ValidateFlags())
+            {
+                return;
+            }
+
             cmd.Run(this);
         }
 
         private T GetCommandFlag<T>() where T : IFlag
         {
             return _cmd.Flags.OfType<T>().Single();
+        }
+
+        private bool ValidateFlags()
+        {
+            foreach (var arg in _args)
+            {
+                if (!arg.IsFlag())
+                {
+                    continue;
+                }
+
+                if (_cmd.Flags == null || !_cmd.Flags.Any(f => arg.IsFlagMatch(f)))
+                {
+                    Console.WriteLine("Error: unknown flag '{0}'", arg);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

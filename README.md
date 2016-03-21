@@ -1,7 +1,6 @@
 # sharp-commands
 
 ## todo
-* flag not found validation
 * flags with typeof(T) value. initial special type handling
   * bool - accept 1, 0, true, false, t, f
   * arrays - see multi flag values
