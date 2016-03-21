@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fixtures\Commands\ChainedFlagsTestCommand.cs" />
     <Compile Include="Fixtures\Commands\FlagsTestCommand.cs" />
     <Compile Include="Fixtures\Commands\NestedTestCommand.cs" />
     <Compile Include="Fixtures\Commands\OverrideHelpTestCommand.cs" />

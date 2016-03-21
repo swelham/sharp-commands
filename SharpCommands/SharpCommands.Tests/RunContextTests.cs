@@ -76,6 +76,29 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
+        public void HasFlag_T_Should_Return_True_For_Matched_Chained_Flag()
+        {
+            var args = new[] { "-vt" };
+            var cmd = new ChainedFlagsTestCommand();
+
+            var context = new RunContext(args, cmd);
+
+            Assert.IsTrue(context.HasFlag<ValidFlag>());
+            Assert.IsTrue(context.HasFlag<TestFlag>());
+        }
+
+        [TestMethod]
+        public void HasFlag_T_Should_Return_False_For_Unmatched_Chained_Flag()
+        {
+            var args = new[] { "-vt" };
+            var cmd = new ChainedFlagsTestCommand();
+
+            var context = new RunContext(args, cmd);
+
+            Assert.IsFalse(context.HasFlag<OverrideHelpFlag>());
+        }
+
+        [TestMethod]
         public void Run_Should_Execute_The_Command_Run_Method()
         {
             var cmd = new SimpleTestCommand();

@@ -44,5 +44,15 @@ namespace SharpCommands.Tests
             Assert.IsFalse("-i".IsFlagMatch(flag));
             Assert.IsFalse("--invalid".IsFlagMatch(flag));
         }
+
+        [TestMethod]
+        public void IsFlagMatch_Should_Match_Chained_Flags()
+        {
+            var flag = new TestFlag();
+
+            Assert.IsTrue("-tab".IsFlagMatch(flag));
+            Assert.IsTrue("-atb".IsFlagMatch(flag));
+            Assert.IsTrue("-abt".IsFlagMatch(flag));
+        }
     }
 }

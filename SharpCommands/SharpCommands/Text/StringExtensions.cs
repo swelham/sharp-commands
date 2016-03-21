@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharpCommands.Text
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         public static bool IsFlag(this string str)
         {
@@ -15,10 +15,29 @@ namespace SharpCommands.Text
 
         public static bool IsFlagMatch(this string str, IFlag flag)
         {
-            var name = string.Concat("--", flag.Name);
-            var alias = string.Concat("-", flag.Alias);
+            if (!str.IsFlag())
+            {
+                return false;
+            }
 
-            return str == name || str == alias;
+            if (str.StartsWith("--"))
+            {
+                return str == string.Concat("--", flag.Name); ;
+            }
+            else
+            {
+                var alias = string.Concat("-", flag.Alias);
+
+                for (int i = 1; i < str.Length; i++)
+                {
+                    if (str[i] == flag.Alias)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
