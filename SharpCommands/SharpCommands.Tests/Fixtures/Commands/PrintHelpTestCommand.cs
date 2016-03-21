@@ -16,11 +16,11 @@ namespace SharpCommands.Tests.Fixtures.Commands
             }
         }
 
-        public string[] Aliases
+        public string Alias
         {
             get
             {
-                return new[] { "ph" };
+                return "ph";
             }
         }
 

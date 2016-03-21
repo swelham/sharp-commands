@@ -62,9 +62,9 @@ namespace SharpCommands.Text
             {
                 var name = command.Name;
 
-                if (command.Aliases != null && command.Aliases.Length > 0)
+                if (command.Alias != null && command.Alias.Length > 0)
                 {
-                    name = string.Format("{0}, {1}", name, string.Join(", ", command.Aliases));
+                    name = string.Format("{0}, {1}", name, string.Join(", ", command.Alias));
                 }
 
                 lines.Add(name, command.Description);

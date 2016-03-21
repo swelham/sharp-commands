@@ -92,8 +92,8 @@ namespace SharpCommands
             }
 
             return commands.SingleOrDefault(c =>
-                    c.Name == cmdStr ||
-                    (c.Aliases != null && c.Aliases.Any(a => a == cmdStr)));
+                c.Name == cmdStr ||
+                c.Alias == cmdStr);
         }
     }
 }

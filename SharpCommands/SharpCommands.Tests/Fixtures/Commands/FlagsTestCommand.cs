@@ -11,11 +11,11 @@ namespace SharpCommands.Tests.Fixtures.Commands
     {
         public const string RUN_OUTPUT = "flags-cmd#run";
 
-        public string[] Aliases
+        public string Alias
         {
             get
             {
-                return new[] { "fc" };
+                return "fc";
             }
         }
 

@@ -8,11 +8,11 @@ namespace SharpCommands.Tests.Fixtures.Commands
 {
     internal class NestedTestCommand : ICommand
     {
-        public string[] Aliases
+        public string Alias
         {
             get
             {
-                return new[] { "ntc" };
+                return "ntc";
             }
         }
 

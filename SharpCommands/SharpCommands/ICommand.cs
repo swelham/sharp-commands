@@ -12,7 +12,7 @@ namespace SharpCommands
 
         string Description { get; }
 
-        string[] Aliases { get; }
+        string Alias { get; }
 
         IFlag[] Flags { get; }
 

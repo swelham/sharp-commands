@@ -10,11 +10,11 @@ namespace SharpCommands.Tests.Fixtures.Commands
     {
         public const string RUN_OUTPUT = "alias-cmd#run";
 
-        public string[] Aliases
+        public string Alias
         {
             get
             {
-                return new[] { "ac" };
+                return "ac";
             }
         }
 

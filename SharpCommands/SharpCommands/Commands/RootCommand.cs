@@ -17,7 +17,7 @@ namespace SharpCommands.Commands
             _cliApp = app;
         }
 
-        public string[] Aliases
+        public string Alias
         {
             get
             {
