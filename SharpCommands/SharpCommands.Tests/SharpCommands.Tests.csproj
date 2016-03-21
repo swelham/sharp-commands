@@ -55,6 +55,7 @@
     <Compile Include="Fixtures\Commands\FlagsTestCommand.cs" />
     <Compile Include="Fixtures\Commands\NestedTestCommand.cs" />
     <Compile Include="Fixtures\Commands\OverrideHelpTestCommand.cs" />
+    <Compile Include="Fixtures\Commands\PrintHelpTestCommand.cs" />
     <Compile Include="Fixtures\Flags\OverrideHelpFlag.cs" />
     <Compile Include="Fixtures\Flags\TestFlag.cs" />
     <Compile Include="Fixtures\Flags\ValidFlag.cs" />
@@ -76,6 +77,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\Output\Print_Help_Command_Help_Screen.txt" />
     <Content Include="Fixtures\Output\Command_Help_Screen_Only_Default_Flags.txt" />
     <Content Include="Fixtures\Output\Command_Help_Screen_With_Commands.txt" />
     <Content Include="Fixtures\Output\Command_Help_Screen.txt" />

@@ -34,7 +34,12 @@ namespace SharpCommands.Tests.Fixtures
         {
             return ReadFixureFile("Command_Help_Screen_Only_Default_Flags.txt");
         }
-        
+
+        public static string PrintHelpCommandHelpScreen()
+        {
+            return ReadFixureFile("Print_Help_Command_Help_Screen.txt");
+        }
+
         private static string ReadFixureFile(string name)
         {
             using (var stream = File.OpenText(string.Concat("..\\..\\Fixtures\\Output\\", name)))

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpCommands.Tests.Fixtures.Flags;
 using SharpCommands.Tests.Fixtures.Commands;
 using SharpCommands.Tests.Support;
+using SharpCommands.Tests.Fixtures;
 
 namespace SharpCommands.Tests
 {
@@ -117,6 +118,20 @@ namespace SharpCommands.Tests
                 var flagValue = context.FlagValue<TestFlag>();
 
                 Assert.AreEqual(string.Empty, flagValue);
+            }
+        }
+
+        [TestMethod]
+        public void PrintHelp_Should_Print_Active_Command_Help_Screen()
+        {
+            var cmd = new PrintHelpTestCommand();
+            var args = new[] { "print-help-cmd", };
+            var context = new RunContext(args, cmd);
+
+            using (var console = new ConsoleOut())
+            {
+                context.PrintHelp();
+                Assert.AreEqual(TestFixtures.PrintHelpCommandHelpScreen(), console.GetOuput());
             }
         }
     }

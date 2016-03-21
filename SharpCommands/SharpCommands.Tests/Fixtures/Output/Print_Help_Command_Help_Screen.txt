@@ -1,0 +1,6 @@
+﻿Details:
+    name     print-help-cmd
+    usage    print-help-cmd [flags]
+
+Flags:
+    -h, --help    Show help for this command

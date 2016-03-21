@@ -61,7 +61,13 @@ namespace SharpCommands
             }
 
             return flagValue;
-        } 
+        }
+
+        public void PrintHelp()
+        {
+            var helpWriter = new HelpWriter();
+            helpWriter.WriteHelpPage(_cmd);
+        }
 
         public void Run(ICommand cmd)
         {
