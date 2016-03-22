@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/swelham/sharp-commands/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/swelham/sharp-commands</projectUrl>
+    <!-- TODO: come up with an icon -->
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Framework for building command-line applications in C#</description>
+    <releaseNotes/>
+    <copyright>Copyright 2016</copyright>
+    <tags>command line argument parser framework library</tags>
+  </metadata>
+</package>
