@@ -160,6 +160,17 @@ namespace SharpCommands.Tests
         }
 
         [TestMethod]
+        public void FlagValue_Should_Return_A_Flag_Value_For_Chained_Flag()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-tv", "test_flag_value", "valid_flag_value" };
+            var context = new RunContext(args, cmd);
+
+            Assert.AreEqual("test_flag_value", context.FlagValue<TestFlag>());
+            Assert.AreEqual("valid_flag_value", context.FlagValue<ValidFlag>());
+        }
+
+        [TestMethod]
         public void PrintHelp_Should_Print_Active_Command_Help_Screen()
         {
             var cmd = new PrintHelpTestCommand();

@@ -54,5 +54,23 @@ namespace SharpCommands.Tests
             Assert.IsTrue("-atb".IsFlagMatch(flag));
             Assert.IsTrue("-abt".IsFlagMatch(flag));
         }
+
+        [TestMethod]
+        public void IsChainedFlag_Should_Return_True_For_Chained_Flags_Arg()
+        {
+            var flag = new TestFlag();
+
+            Assert.IsTrue("-abc".IsChainedFlag());
+        }
+
+        [TestMethod]
+        public void IsChainedFlag_Should_Return_False_For_Non_Chained_Flags_Arg()
+        {
+            var flag = new TestFlag();
+
+            Assert.IsFalse("a".IsChainedFlag());
+            Assert.IsFalse("-a".IsChainedFlag());
+            Assert.IsFalse("--abc".IsChainedFlag());
+        }
     }
 }

@@ -39,5 +39,10 @@ namespace SharpCommands.Text
 
             return false;
         }
+
+        public static bool IsChainedFlag(this string str)
+        {
+            return str.IsFlag() && !str.StartsWith("--") && str.Length > 2;
+        }
     }
 }

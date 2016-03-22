@@ -48,9 +48,20 @@ namespace SharpCommands
 
             for (int i = 0; i < _args.Length; i++)
             {
-                if (_args[i].IsFlagMatch(flag) && _args.Length - 1 > i)
+                var arg = _args[i];
+
+                if (arg.IsFlagMatch(flag) && _args.Length - 1 > i)
                 {
-                    flagValue = _args[i + 1];
+                    if (arg.IsChainedFlag())
+                    {
+                        var aliasIndex = arg.IndexOf(flag.Alias);
+                        flagValue = _args[i + aliasIndex];
+                    }
+                    else
+                    {
+                        flagValue = _args[i + 1];
+                    }
+
                     break;
                 }
             }
