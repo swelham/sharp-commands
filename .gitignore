@@ -234,6 +234,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-
-# Build directory used for nuget packaging
-/build
