@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SharpCommands")]
 [assembly: AssemblyDescription("Framework for building command-line applications in C#")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Stuart Welham")]
+[assembly: AssemblyCompany("swelham")]
 [assembly: AssemblyProduct("SharpCommands")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
