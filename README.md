@@ -1,8 +1,7 @@
 # sharp-commands
 
 ## todo
-* flags with typeof(T) value. initial special type handling
-  * bool - accept 1, 0, true, false, t, f
+* special flag value type handling
   * arrays - see multi flag values
   * paths/files - accept path/file types (needs some thought)
   * ... more ideas

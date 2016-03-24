@@ -183,5 +183,41 @@ namespace SharpCommands.Tests
                 Assert.AreEqual(TestFixtures.PrintHelpCommandHelpScreen(), console.GetOuput());
             }
         }
+
+        [TestMethod]
+        public void FlagValue_Should_Return_Typed_Default_Value_For_Empty_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t" };
+            var context = new RunContext(args, cmd);
+
+            var result = context.FlagValue<TestFlag, int>();
+
+            Assert.AreEqual(default(int), result);
+        }
+
+        [TestMethod]
+        public void FlagValue_Should_Return_A_Typed_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "12345" };
+            var context = new RunContext(args, cmd);
+
+            var result = context.FlagValue<TestFlag, int>();
+
+            Assert.IsInstanceOfType(result, typeof(int));
+            Assert.AreEqual(12345, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void FlagValue_Should_Throw_FormatException_For_Invalid_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "abc" };
+            var context = new RunContext(args, cmd);
+
+            context.FlagValue<TestFlag, int>();
+        }
     }
 }

@@ -74,6 +74,18 @@ namespace SharpCommands
             return flagValue;
         }
 
+        public TResult FlagValue<T, TResult>() where T : IFlag
+        {
+            var value = this.FlagValue<T>();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return default(TResult);
+            }
+
+            return (TResult)Convert.ChangeType(value, typeof(TResult));
+        }
+
         public void PrintHelp()
         {
             var helpWriter = new HelpWriter();

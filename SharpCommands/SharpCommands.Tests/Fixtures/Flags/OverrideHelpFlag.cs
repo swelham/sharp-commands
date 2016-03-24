@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharpCommands.Tests.Fixtures.Flags
 {
-    class OverrideHelpFlag : IFlag
+    internal class OverrideHelpFlag : IFlag
     {
         public string Name
         {
