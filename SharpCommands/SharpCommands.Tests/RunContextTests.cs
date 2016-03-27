@@ -257,5 +257,21 @@ namespace SharpCommands.Tests
 
             Assert.AreEqual(0, result.Length);
         }
+
+        [TestMethod]
+        public void FlagArrayValue_Should_Return_A_Typed_Array()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "1", "2", "3" };
+            var context = new RunContext(args, cmd);
+
+            var result = context.FlagArrayValue<TestFlag, int>();
+
+            Assert.IsInstanceOfType(result, typeof(int[]));
+            Assert.AreEqual(3, result.Length);
+            Assert.AreEqual(1, result[0]);
+            Assert.AreEqual(2, result[1]);
+            Assert.AreEqual(3, result[2]);
+        }
     }
 }

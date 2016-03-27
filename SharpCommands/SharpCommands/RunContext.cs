@@ -63,21 +63,23 @@ namespace SharpCommands
                         values.Length));
             }
 
-            return (TResult)Convert.ChangeType(values.Single(), typeof(TResult));
+            return this.ConvertType<TResult>(values.Single());
         }
 
         public string[] FlagArrayValue<T>() where T : IFlag
         {
-            var flag = this.GetCommandFlag<T>();
-            var values = this.FindFlagValues(flag);
-            
-            return values;
+            return this.FlagArrayValue<T, string>();
         }
 
-        //public IEnumerable<TResult> FlagArrayValue<T, TResult>() where T : IFlag
-        //{
-        //    return null;
-        //}
+        public TResult[] FlagArrayValue<T, TResult>() where T : IFlag
+        {
+            var flag = this.GetCommandFlag<T>();
+            var values = this.FindFlagValues(flag);
+
+            return values
+                .Select(v => this.ConvertType<TResult>(v))
+                .ToArray();
+        }
 
         public void PrintHelp()
         {
@@ -100,6 +102,11 @@ namespace SharpCommands
         private T GetCommandFlag<T>() where T : IFlag
         {
             return _cmd.Flags.OfType<T>().Single();
+        }
+
+        private T ConvertType<T>(string value)
+        {
+            return (T)Convert.ChangeType(value, typeof(T));
         }
 
         private bool ValidateFlags()
