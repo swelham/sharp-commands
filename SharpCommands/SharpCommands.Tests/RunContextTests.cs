@@ -230,5 +230,32 @@ namespace SharpCommands.Tests
 
             context.FlagValue<TestFlag>();
         }
+
+        [TestMethod]
+        public void FlagArrayValue_Should_Return_An_Array_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "1", "2", "3" };
+            var context = new RunContext(args, cmd);
+
+            var result = context.FlagArrayValue<TestFlag>();
+
+            Assert.AreEqual(result.Length, 3);
+            Assert.AreEqual("1", result[0]);
+            Assert.AreEqual("2", result[1]);
+            Assert.AreEqual("3", result[2]);
+        }
+
+        [TestMethod]
+        public void FlagArrayValue_Should_Return_An_Empty_Array()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t" };
+            var context = new RunContext(args, cmd);
+
+            var result = context.FlagArrayValue<TestFlag>();
+
+            Assert.AreEqual(0, result.Length);
+        }
     }
 }

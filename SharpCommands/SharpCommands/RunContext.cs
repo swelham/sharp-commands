@@ -66,6 +66,19 @@ namespace SharpCommands
             return (TResult)Convert.ChangeType(values.Single(), typeof(TResult));
         }
 
+        public string[] FlagArrayValue<T>() where T : IFlag
+        {
+            var flag = this.GetCommandFlag<T>();
+            var values = this.FindFlagValues(flag);
+            
+            return values;
+        }
+
+        //public IEnumerable<TResult> FlagArrayValue<T, TResult>() where T : IFlag
+        //{
+        //    return null;
+        //}
+
         public void PrintHelp()
         {
             var helpWriter = new HelpWriter();
