@@ -16,4 +16,5 @@
   * need code docs
   * need usage docs
   * need list of features
+* example apps
 
