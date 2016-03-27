@@ -155,7 +155,7 @@ namespace SharpCommands.Tests
 
                 var flagValue = context.FlagValue<TestFlag>();
 
-                Assert.AreEqual(string.Empty, flagValue);
+                Assert.AreEqual(null, flagValue);
             }
         }
 
@@ -218,6 +218,17 @@ namespace SharpCommands.Tests
             var context = new RunContext(args, cmd);
 
             context.FlagValue<TestFlag, int>();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void FlagValue_Should_Throw_InvalidOperationException_For_Multiple_Values_With_Non_Array_Return_Type()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "1", "2", "3" };
+            var context = new RunContext(args, cmd);
+
+            context.FlagValue<TestFlag>();
         }
     }
 }

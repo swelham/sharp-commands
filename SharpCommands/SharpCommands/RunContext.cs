@@ -43,47 +43,27 @@ namespace SharpCommands
 
         public string FlagValue<T>() where T : IFlag
         {
-            var flag = this.GetCommandFlag<T>();
-            string flagValue = string.Empty;
-
-            for (int i = 0; i < _args.Length; i++)
-            {
-                var arg = _args[i];
-
-                if (arg.IsFlagMatch(flag) && _args.Length - 1 > i)
-                {
-                    if (arg.IsChainedFlag())
-                    {
-                        var aliasIndex = arg.IndexOf(flag.Alias);
-                        flagValue = _args[i + aliasIndex];
-                    }
-                    else
-                    {
-                        flagValue = _args[i + 1];
-                    }
-
-                    break;
-                }
-            }
-
-            if (flagValue.IsFlag())
-            {
-                return string.Empty;
-            }
-
-            return flagValue;
+            return this.FlagValue<T, string>();
         }
 
         public TResult FlagValue<T, TResult>() where T : IFlag
         {
-            var value = this.FlagValue<T>();
+            var flag = this.GetCommandFlag<T>();
+            var values = this.FindFlagValues(flag);
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (values.Length == 0)
             {
                 return default(TResult);
             }
+            else if (values.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        "Flag value expected to be a singular value but contained {0} values",
+                        values.Length));
+            }
 
-            return (TResult)Convert.ChangeType(value, typeof(TResult));
+            return (TResult)Convert.ChangeType(values.Single(), typeof(TResult));
         }
 
         public void PrintHelp()
@@ -126,6 +106,50 @@ namespace SharpCommands
             }
 
             return true;
+        }
+
+        private string[] FindFlagValues(IFlag flag)
+        {
+            var values = new List<string>();
+
+            for (int flagIndex = 0; flagIndex < _args.Length; flagIndex++)
+            {
+                var arg = _args[flagIndex];
+
+                if (arg.IsFlagMatch(flag) && _args.Length - 1 > flagIndex)
+                {
+                    if (arg.IsChainedFlag())
+                    {
+                        var aliasIndex = arg.IndexOf(flag.Alias);
+                        var value = _args[flagIndex + aliasIndex];
+    
+                        if (value.IsFlag())
+                        {
+                            break;
+                        }
+
+                        values.Add(value);
+                    }
+                    else
+                    {
+                        for (int valueIndex = flagIndex + 1; valueIndex < _args.Length; valueIndex++)
+                        {
+                            var value = _args[valueIndex];
+
+                            if (value.IsFlag())
+                            {
+                                break;
+                            }
+
+                            values.Add(value);
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            return values.ToArray();
         }
     }
 }
