@@ -81,6 +81,36 @@ namespace SharpCommands
                 .ToArray();
         }
 
+        public bool TryGetFlagValue<T>(out string value) where T : IFlag
+        {
+            try
+            {
+                value = this.FlagValue<T>();
+            }
+            catch (Exception)
+            {
+                value = null;
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool TryGetFlagValue<T, TResult>(out TResult value) where T : IFlag
+        {
+            try
+            {
+                value = this.FlagValue<T, TResult>();
+            }
+            catch (Exception)
+            {
+                value = default(TResult);
+                return false;
+            }
+
+            return true;
+        }
+
         public void PrintHelp()
         {
             var helpWriter = new HelpWriter();

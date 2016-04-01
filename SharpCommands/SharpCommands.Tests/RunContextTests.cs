@@ -273,5 +273,62 @@ namespace SharpCommands.Tests
             Assert.AreEqual(2, result[1]);
             Assert.AreEqual(3, result[2]);
         }
+
+        [TestMethod]
+        public void TryGetFlagValue_Should_Return_A_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "value" };
+            var context = new RunContext(args, cmd);
+            string result;
+
+            var success = context.TryGetFlagValue<TestFlag>(out result);
+
+            Assert.AreEqual(true, success);
+            Assert.AreEqual("value", result);
+        }
+
+        [TestMethod]
+        public void TryGetFlagValue_Should_Return_A_Null_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "value" };
+            var context = new RunContext(args, cmd);
+            string result;
+
+            var success = context.TryGetFlagValue<TestFlag>(out result);
+
+            Assert.AreEqual(true, success);
+            Assert.AreEqual("value", result);
+        }
+
+        [TestMethod]
+        public void TryGetFlagValue_Should_Return_A_Typed_Flag_Value()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "12345" };
+            var context = new RunContext(args, cmd);
+            int result;
+
+            var success = context.TryGetFlagValue<TestFlag, int>(out result);
+
+            Assert.AreEqual(true, success);
+            Assert.IsInstanceOfType(result, typeof(int));
+            Assert.AreEqual(12345, result);
+        }
+
+        [TestMethod]
+        public void TryGetFlagValue_Should_Return_A_Default_Value_For_Invalid_Type()
+        {
+            var cmd = new FlagsTestCommand();
+            var args = new[] { "flags-cmd", "-t", "123value" };
+            var context = new RunContext(args, cmd);
+            int result;
+
+            var success = context.TryGetFlagValue<TestFlag, int>(out result);
+
+            Assert.AreEqual(false, success);
+            Assert.AreEqual(0, result);
+        }
     }
 }
