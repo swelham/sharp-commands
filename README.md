@@ -1,6 +1,7 @@
 # sharp-commands
 
 ## todo
+* added caching to HasFlag/FlagValue methods
 * output formatter. move hard coded output format into it's own class/interface that would allow a custom formatter to be provided
 * need to consider how best to handle the generic conversions. should only primitive types be allowed and force the caller to provide a callback that handles the conversion for complex types... or maybe support some form of custom converters to be specified in the CliApp.
 * special flag value type handling
